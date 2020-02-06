@@ -1,0 +1,33 @@
+dans les controller
+nous trouvons la route principale,la classe qui herite de ControllerBase et un constructeur qui prend en parametre le context.
+
+
+nos requette http : get,post(ajout);put (modification) et delete
+chacune de ces classes comporte un attribut
+[HttpGet],   [HttpGet ("{id}")],    [HttpPost]   [HttpPut("{id}")]    [HttpDelete("{id}")]
+
+
+danse la classe context ( dossier data)
+
+//on crée une injection de dépendance et appeler ce service dans startup.cs
+
+
+private readonly string _connect;
+        public Northwind2Context(IConfiguration config)
+        {
+            _connect = config.GetConnectionString("Northwind2Connect");
+        }
+definir les methode detail que nos requete get post put delete appelle dans le controller
+
+dans  appsetting on definit le chemin de connexion
+
+"ConnectionStrings": {
+    "Northwind2Connect": "Server=(localdb)\\mssqllocaldb;Database=Northwind2;Trusted_Connection=True;"
+  },
+
+
+dans le startup.cs on definit les service
+
+services.AddControllers();
+            services.AddSingleton<IConfiguration>(Configuration);// service initialisé dans le contexte pour le chemin de connexion
+            services.AddTransient<Northwind2Context>();
