@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Taches xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Tache Id="1" Creation="2019-12-14T23:00:00Z" Term="2020-02-16T23:00:00Z" Prio="2" Fait="true">Créer une API REST de gestion de tâches</Tache>
+  <Tache Id="2" Creation="2019-12-15T23:00:00Z" Term="2020-02-13T23:00:00Z" Prio="1" Fait="false">Tester l'API avec le module RESTClient de Firefox</Tache>
+  <Tache Id="3" Creation="2019-12-16T23:00:00Z" Term="2020-02-14T23:00:00Z" Prio="2" Fait="false">Déboguer dans Visual Studio</Tache>
+  <Tache Id="4" Creation="2019-12-17T23:00:00Z" Term="2020-02-15T23:00:00Z" Prio="3" Fait="true">Vérifier le fichier XML</Tache>
+  <Tache Id="5" Creation="2019-12-18T23:00:00Z" Term="2020-02-16T23:00:00Z" Prio="1" Fait="false">Tester l'ajout, la modification, la suppression et les contrôles de validation
+</Tache>
+</Taches>
