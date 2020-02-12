@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Northwind2API_EFDB.Models;
 
@@ -89,16 +90,34 @@ namespace Northwind2API_EFDB.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Supplier>> DeleteSupplier(int id)
         {
-            var supplier = await _context.Supplier.FindAsync(id);
+            var supplier = await _context.Supplier.Include(a => a.Address).SingleOrDefaultAsync(s => s.SupplierId == id);
             if (supplier == null)
             {
                 return NotFound();
             }
 
             _context.Supplier.Remove(supplier);
-            await _context.SaveChangesAsync();
+            _context.Address.Remove(supplier.Address);
 
-            return supplier;
+            try
+            {
+                await _context.SaveChangesAsync();
+                return Ok(supplier);
+            }
+
+            catch (DbUpdateException e)
+            {
+                var sqlEx = (SqlException)e.InnerException;
+
+                if (sqlEx.Number == 547)
+                {
+                    return BadRequest($"Le fournisseur {id} ne peut pas être supprimé, car il est utilisé ");
+                }
+
+                throw;
+            }
+
+            
         }
 
         private bool SupplierExists(int id)

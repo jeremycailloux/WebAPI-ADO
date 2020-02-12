@@ -5,6 +5,11 @@ namespace Northwind2API_EFDB.Models
 {
     public partial class Product
     {
+        public Product()
+        {
+            OrderDetail = new HashSet<OrderDetail>();
+        }
+
         public int ProductId { get; set; }
         public Guid CategoryId { get; set; }
         public int SupplierId { get; set; }
@@ -19,5 +24,6 @@ namespace Northwind2API_EFDB.Models
 
         public virtual Category Category { get; set; }
         public virtual Supplier Supplier { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetail { get; set; }
     }
 }

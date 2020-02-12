@@ -7,6 +7,9 @@ namespace Northwind2API_EFDB.Models
     {
         public Address()
         {
+            Customer = new HashSet<Customer>();
+            Employee = new HashSet<Employee>();
+            Orders = new HashSet<Orders>();
             Supplier = new HashSet<Supplier>();
         }
 
@@ -17,7 +20,10 @@ namespace Northwind2API_EFDB.Models
         public string Country { get; set; }
         public string Region { get; set; }
         public string Phone { get; set; }
-
-        public virtual ICollection<Supplier> Supplier { get; set; }
+        // Propriétés de navigation
+        public virtual ICollection<Customer> Customer { get; set; } 
+        public virtual ICollection<Employee> Employee { get; set; }
+        public virtual ICollection<Orders> Orders { get; set; }
+        internal virtual ICollection<Supplier> Supplier { get; set; }
     }
 }
